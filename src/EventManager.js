@@ -172,9 +172,13 @@ function EventManager(options, _sources) {
 
         result = dt.getUTCFullYear()
             + (dt .getUTCMonth() < 9 ? '0' : '') + (dt .getUTCMonth() + 1)
-            + (dt .getUTCDate() <= 10 ? '0' : '') + dt .getUTCDate();
+            + (dt .getUTCDate() < 10 ? '0' : '') + dt .getUTCDate();
 
-        result += 'T' + dt.getUTCHours() + dt.getUTCMinutes() + dt.getUTCSeconds() + 'Z';
+        result += 'T'
+            + (dt.getUTCHours() < 10 ? '0' : '') + dt.getUTCHours()
+            + (dt.getUTCMinutes() < 10 ? '0' : '') + dt.getUTCMinutes()
+            + (dt.getUTCSeconds() < 10 ? '0' : '') + dt.getUTCSeconds()
+            + 'Z';
 
         return result;
     }
